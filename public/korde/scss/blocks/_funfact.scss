@@ -1,0 +1,136 @@
+/**
+Funfact Area
+*/
+.funfacts{
+	div[class^="col-"]{
+		&:nth-child(n){
+			.funfact{
+				&:before{
+					background: $color-blue;
+				}
+				&:after{
+					background: url(images/blog/blog-thumbnail-1.jpg) no-repeat scroll center center;
+					background-size: cover;
+				}
+			}
+		}
+		&:nth-child(2n){
+			.funfact{
+				&:before{
+					background: $color-green;
+				}
+				&:after{
+					background: url(images/blog/blog-thumbnail-2.jpg) no-repeat scroll center center;
+					background-size: cover;
+				}
+			}
+		}
+		&:nth-child(3n){
+			.funfact{
+				&:before{
+					background: $color-yellow;
+				}
+				&:after{
+					background: url(images/blog/blog-thumbnail-3.jpg) no-repeat scroll center center;
+					background-size: cover;
+				}
+			}
+		}
+		&:nth-child(4n){
+			.funfact{
+				&:before{
+					background: $color-orange;
+				}
+				&:after{
+					background: url(images/blog/blog-thumbnail-4.jpg) no-repeat scroll center center;
+					background-size: cover;
+				}
+			}
+		}
+	}
+}
+.funfact{
+	position: relative;
+	overflow: hidden;
+	padding: 130px 15px;
+	color: #fff;
+	&:after{
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		z-index: 1;
+		@include transition(all 0.3s ease-in-out 0s);
+		@include transform(scale(1.2));
+	}
+	&:before{
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		opacity: 1;
+		z-index: 2;
+		@include transition(all 0.3s ease-in-out 0s);
+	}
+	& > *{
+		position: relative;
+		z-index: 3;
+	}
+	h1{
+		font-size: 50px;
+		letter-spacing: 0.25px;
+		margin-bottom: 5px;
+		font-weight: 700;
+	}
+	h5{
+		margin-bottom: 0;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	&:hover{
+		&:before{
+			opacity: 0.9;
+		}
+		&:after{
+			@include transform(scale(1))
+		}
+	}
+}
+
+@media #{$xlg-layout}{
+	.funfact{
+		padding: 80px 15px;
+	}
+}
+
+@media #{$lg-layout}{
+	.funfact {
+	    padding: 70px 15px;
+	    h1{
+	    	font-size: 42px;
+	    }
+	}
+}
+
+@media #{$md-layout}{
+	.funfact {
+	    padding: 70px 15px;
+	    h1{
+	    	font-size: 42px;
+	    }
+	}
+}
+
+@media #{$sm-layout}{
+	.funfact {
+	    padding: 70px 15px;
+	    h1{
+	    	font-size: 42px;
+	    }
+	}
+}

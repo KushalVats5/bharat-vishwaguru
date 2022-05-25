@@ -1,0 +1,130 @@
+/**
+Boxed Layout Styles
+*/
+.boxed--layout{
+	margin: 0 150px;
+	.header{
+		width: calc(100% - 300px);
+		margin-left: 150px;
+	}
+	.sticky--header.is-sticky .header__bottom{
+		width: calc(100% - 300px);
+		margin-left: 150px;
+	}
+	.feature {
+	    padding: 85px 70px;
+	}
+	.taxcalc__content__inner {
+	    width: 75%;
+	}
+	.taxcalc__calculation {
+	    padding: 125px 70px;
+	}
+}
+
+@media #{$xx-layout}{
+	.boxed--layout{
+		margin: 0 80px;
+		.header{
+			width: calc(100% - 160px);
+			margin-left: 80px;
+		}
+		.sticky--header.is-sticky .header__bottom{
+			width: calc(100% - 160px);
+			margin-left: 80px;
+		}
+	}
+}
+@media #{$xlg-layout}{
+	.boxed--layout{
+		margin: 0 30px;
+		.header{
+			width: calc(100% - 60px);
+			margin-left: 30px;
+		}
+		.sticky--header.is-sticky .header__bottom{
+			width: calc(100% - 60px);
+			margin-left: 30px;
+		}
+		.taxcalc__calculation {
+		    padding: 125px 0;
+		}
+		.taxcalc__content__inner {
+			right: -8%;
+		    width: 90%;
+		    padding: 50px;
+		}
+		.feature {
+		    padding: 85px 30px;
+		}
+	}
+}
+@media only screen and (min-width: 1400px) and (max-width: 1599px){
+	.boxed--layout{
+		.taxcalc__calculation {
+		    padding: 125px 15px;
+		}
+	} 
+}
+
+@media #{$lg-layout}{
+	.boxed--layout{
+		margin: 0 20px;
+		.header{
+			width: calc(100% - 40px);
+			margin-left: 20px;
+		}
+		.sticky--header.is-sticky .header__bottom{
+			width: calc(100% - 40px);
+			margin-left: 20px;
+		}
+		.feature {
+		    padding: 55px 30px;
+		}
+	}
+}
+
+@media #{$md-layout}{
+	.boxed--layout {
+		margin: 0 10px;
+		.header {
+			width: 100%;
+			margin-left: 0;
+		}
+		.sticky--header.is-sticky .header__bottom {
+			width: calc(100% - 20px);
+			margin-left: 10px;
+		}
+		.feature {
+			padding: 55px 30px;
+		}
+	}
+}
+
+@media #{$sm-layout}{
+	.boxed--layout {
+		margin: 0 10px;
+		.header {
+			width: 100%;
+			margin-left: 0;
+		}
+		.sticky--header.is-sticky .header__bottom {
+			width: calc(100% - 20px);
+			margin-left: 10px;
+		}
+	}
+}
+
+@media #{$xs-layout}{
+	.boxed--layout{
+		.feature {
+			padding: 60px 20px;
+		}
+		.taxcalc__content__inner{
+			width: 90%;
+		}
+		.taxcalc__calculation {
+			padding: 80px 10px;
+		}
+	}
+}

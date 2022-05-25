@@ -1,0 +1,167 @@
+/**
+Navigation Styles
+*/
+#main-navigation{}
+
+.main-navigation{
+	@include flexbox-im();
+	@include align-self(stretch);
+	@include align-items(center);
+	& > ul > li:hover > a{
+		color: $theme-color;
+	}
+	ul{
+		@include flexbox();
+		@include align-self(stretch);
+		@include align-items(center);
+		padding-left: 0;
+		margin-bottom: 0;
+		li{
+		@include flexbox();
+		@include align-self(stretch);
+		@include align-items(center);
+			padding: 0 24px;
+			&:first-child{
+				padding-left: 0;
+			}
+			&:last-child{
+				padding-right: 0;
+			}
+			a{
+				@include flexbox();
+				@include align-self(stretch);
+				@include align-items(center);
+				color: $heading-color-light;
+				font-weight: 600;
+				font-size: 16px;
+				text-transform: uppercase;
+			}
+
+			/* Dropdown Menu Styles */
+			&.cr-dropdown{
+				position: relative;
+				& > a{
+					&:after{
+						content: "\f107";
+						font-family: fontAwesome;
+						margin-left: 5px;
+						line-height: 26px;
+						display: inline-block;
+						margin-top: -4px;
+					}
+				}
+				.cr-dropdown-menu{
+					position: absolute;
+					left: 0;
+					top: 100%;
+					width: 275px;
+					background: #ffffff;
+					visibility: hidden;
+					@include transform(scaleY(0));
+					@include transform-origin(0 0);
+					@include box-shadow(0 0 10px rgba(0,0,0,0.2));
+					@include transition(all 0.3s ease-in-out 0s);
+					z-index: 1;
+					padding: 15px;
+					li{
+						display: block;
+						padding: 0;
+						position: relative;
+						a{
+							display: block;
+						    font-size: 12px;
+						    background: #ffffff;
+						    color: #808080;
+						    padding: 4px 0;
+						    letter-spacing: 0.5px;
+						    position: relative;
+						    font-weight: 400;
+						    border-radius: 2px;
+						}
+						&:hover{
+							& > a{
+								background: #f1f1f1;
+								padding-left: 15px;
+							}
+						}
+
+						&.cr-dropdown-sub{
+							& > a{
+								position: relative;
+								&:after{
+									content: "\f105";
+									font-family: fontAwesome;
+									position: absolute;
+									right: 15px;
+									top: 50%;
+									height: 30px;
+									line-height: 30px;
+									margin-top: -15px;
+									font-size: 14px;
+								}
+							}
+						}
+
+						/* Sub Dropdown Menu */
+						ul{
+							position: absolute;
+							left: calc(100% + 15px);
+							top: 0;
+							width: 275px;
+							@include box-shadow(0 0 10px rgba(0,0,0,0.2));
+							z-index: 2;
+							@include transition(all 0.3s ease-in-out 0s);
+							@include transform(scaleY(0));
+							@include transform-origin(0 0); 
+							padding: 15px;
+							background: #fff;
+						}
+
+						&:hover{
+							ul{
+								visibility: visible;
+								@include transform(scaleY(1));
+							}
+						}
+					}
+				}
+			}
+
+			&:hover{
+				a{
+					&:before{
+						width: 100%;
+					}
+				}
+				.cr-dropdown-menu{
+					visibility: visible;
+					@include transform(scaleY(1));
+				}
+			}
+
+			/* Last Element */
+			&.last-elements{
+				.cr-dropdown-menu{
+					right: 0;
+					left: auto;
+					.cr-sub-dropdown-menu{
+						left: auto;
+						right: calc(100% + 15px);
+						background: #fff;
+					}
+				}
+			}
+		}
+		ul{
+			display: block;
+			background: #fff;
+		}
+	}	
+}
+
+@media #{$lg-layout}{
+	.main-navigation ul li{
+		padding: 0 17px;
+	}
+}
+

@@ -1,0 +1,38 @@
+/**
+Pagination Style
+*/
+.cr-pagination{
+	padding-top: 30px;
+	ul{
+		padding-left: 0;
+		margin-bottom: 0;
+		list-style: none;
+		display: inline-block;
+		li{
+			display: inline-block;
+			font-weight: 600;
+			font-size: 18px;
+			color: #b5b5b5;
+			margin: 0 2px;
+			&:first-child{
+				margin-left: 0;
+			}
+			&:last-child{
+				margin-right: 0;
+			}
+			a{
+				display: inline-block;
+				height: 32px;
+				line-height: 36px;
+				padding: 0 10px;
+				color: #b5b5b5;
+			}
+			&.active, &:hover{
+				a{
+					color: #fff;
+					background: $theme-color;
+				}
+			}
+		}
+	}
+}

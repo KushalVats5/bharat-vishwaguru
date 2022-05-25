@@ -1,0 +1,136 @@
+
+/**
+Features area styles
+*/
+.features-area{
+	div[class^="col-"]{
+		&:nth-child(odd){
+			.feature{
+				background: $color-blue;
+			}
+			.feature__icon{
+				color: #fff;
+			}
+			.feature__content{
+				h4{
+					color: #fff;
+					a{
+						color: #fff;
+					}
+				}
+				p{
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+.feature{
+	background: $bg-grey-light;
+	padding: 85px 120px;
+	@include flexbox();
+	@include align-items(center);
+}
+.feature__icon{
+	color: $theme-color;
+	margin-right: 35px;
+	font-size: 60px;
+	height: 65px;
+	width: 65px;
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	span{
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		left: 0;
+		@include transition(all 0.3s ease-in-out 0s);
+		i{
+			line-height: 65px;
+		}
+		&:first-child{
+			top: 0
+		}
+		&:last-child{
+			top: 100%
+		}
+	}
+}
+.feature__content{
+	@include flex-shrink(100);
+	h4{
+		font-weight: 700;
+		color: $theme-color;
+		margin-bottom: 10px;
+		a{
+			color: $theme-color;
+		}
+	}
+	p{
+		margin-bottom: 0;
+	}
+}
+.feature{
+	&:hover{
+		.feature__icon{
+			span{
+				&:first-child{
+					top: -100%;
+				}
+				&:last-child{
+					top: 0;
+				}
+			}
+		}
+	}
+}
+
+@media #{$xx-layout}{
+	.feature{
+		padding: 70px;
+	}
+}
+
+@media #{$xlg-layout}{
+	.feature{
+		padding: 80px 30px;
+	}
+}
+@media #{$lg-layout}{
+	.feature{
+		@include flex-wrap(wrap);
+		@include justify-content(center);
+		text-align: center;
+		padding: 50px 30px;
+	}
+	.feature__icon{
+		margin-right: 0;
+		margin-bottom: 30px;
+	}
+}
+
+@media #{$md-layout}{
+	.feature{
+		padding: 70px 20%;
+	}
+}
+@media #{$sm-layout}{
+	.feature{
+		padding: 70px 15%;
+	}
+}
+@media #{$xs-layout}{
+	.feature{
+		@include flex-wrap(wrap);
+		@include justify-content(center);
+		text-align: center;
+		    padding: 70px 8%;
+	}	
+	.feature__icon{
+		margin-right: 0;
+	}
+	.feature__content{
+		padding-top: 40px;
+	}
+}

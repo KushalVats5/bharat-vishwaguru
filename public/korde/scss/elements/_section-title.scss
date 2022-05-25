@@ -1,0 +1,88 @@
+/**
+Section Title Styles
+*/
+
+.section-title{
+	padding-left: 0;
+	padding-right: 90px;
+	h4{
+		color: $heading-color-light;
+		font-weight: 600;
+		margin-bottom: 5px;
+	}
+	h2{
+		color: $heading-color;
+		font-weight: 700;
+	}
+	p{
+
+	}
+	&.text-center{
+		padding: 0 60px;
+		text-align: center;
+	}
+	&.text-right{
+		padding-right: 0;
+		padding-left: 90px;
+	}
+	&.no-padding{
+		padding: 0 !important;
+	}
+}
+
+@media #{$lg-layout}{
+	.section-title{
+		padding-right: 30px;
+		&.text-center{
+			padding: 0 25px;
+		}
+		&.text-right{
+			padding-left: 30px;
+		}
+	}
+}
+
+@media #{$md-layout}{
+	.section-title{
+		padding-right: 30px;
+		&.text-center{
+			padding: 0 25px;
+		}
+		&.text-right{
+			padding-left: 30px;
+		}
+	}
+}
+
+
+@media #{$sm-layout}{
+	.section-title{
+		padding-right: 30px;
+		&.text-center{
+			padding: 0 25px;
+		}
+		&.text-right{
+			padding-left: 30px;
+		}
+	}
+}
+
+@media #{$xs-layout}{
+	.section-title{
+		padding-right: 0;
+		&.text-center{
+			padding: 0;
+		}
+
+		&.text-right{
+			padding-left: 0;
+		}
+	}
+}
+
+h4.small-title{
+	color: #303030;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin-bottom: 40px;
+}

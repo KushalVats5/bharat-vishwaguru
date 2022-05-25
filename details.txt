@@ -1,0 +1,11 @@
+Live: 
+User: taxring
+Database: taxring
+Password: ]r~SD{v^Z%yY
+
+SSH Details: 
+ssh i7r2d24z8117@166.62.10.187
+IP: 166.62.10.187
+Port: 22
+User: i7r2d24z8117
+Password: Taxring@2021

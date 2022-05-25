@@ -1,0 +1,106 @@
+/**
+Breadcrumb Styles
+*/
+
+#cr-breadcrumb-area{}
+.cr-breadcrumb-area{
+	background-color: $bg-grey;
+	background-image: url(images/bg/breadcrumb-bg.jpg) no-repeat scroll center center;
+	background: url(images/bg/breadcrumb-bg.jpg) no-repeat scroll center center;
+	background-size: cover;
+	position: relative;
+	&:before{
+		content: "";
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: rgba(0,0,0,0.4);
+		position: absolute;
+		display: none;
+	}
+	& > div, & > *{
+		position: relative;
+	}
+}
+.cr-breadcrumb{
+	color: $theme-color;
+	h1{
+		color: $color-blue;
+		font-size: 45px;
+		font-weight: 700;
+		text-transform: uppercase;
+		margin-bottom: 0;
+	}
+	p{
+		color: #303030;
+		margin-bottom: 0;
+	}
+}
+.cr-breadcrumb__pagination{
+	padding-left: 0;
+	margin-bottom: 0;
+	list-style: none;
+	display: inline-block;
+	li{
+		display: inline-block;
+		font-weight: 400;
+		font-size: 14px;
+		color: #474747;
+		text-transform: uppercase;
+		&:after{
+			content: " - ";
+		}
+		&:last-child{
+			&:after{
+				display: none;
+			}
+		}
+		a{
+			color: #474747;
+			&:hover{
+				color: $color-blue;
+			}
+		}
+	}
+}
+
+@media #{$md-layout}{
+	.cr-breadcrumb-area{
+		margin-top: 0 !important;
+	}
+	.cr-breadcrumb{
+		h1{
+			font-size: 36px;
+		}
+	}
+}
+
+@media #{$sm-layout}{
+	.cr-breadcrumb-area{
+		margin-top: 0 !important;
+		background-position: center left;
+		&:before{
+			display: block;
+		}
+	}
+	.cr-breadcrumb{
+		h1{
+			font-size: 32px;
+		}
+		p{
+			color: #fff;
+		}
+	}
+	.cr-breadcrumb__pagination{
+		li{
+			color: #fff;
+			a{
+				color: #fff;
+				&:hover{
+					color: $color-blue;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,164 @@
+/**
+Features Page
+*/
+
+.pg-features{
+	margin-top: 110px;
+	&:first-child, &:only-child{
+		margin-top: 0;
+	}
+	&:nth-child(even){
+		.pg-features__description{
+			padding-right: 0;
+			padding-left: 50px;
+		}
+		.pg-features__thumb{
+			&:after{
+				right: auto;
+				left: -20px;
+			}
+		}
+	}
+	&:nth-child(n){
+		.pg-features__thumb{
+			&:after{
+				background: $color-blue;
+			}
+		}
+	}
+	&:nth-child(2n){
+		.pg-features__thumb{
+			&:after{
+				background: $color-green;
+			}
+		}
+	}
+	&:nth-child(3n){
+		.pg-features__thumb{
+			&:after{
+				background: $color-yellow;
+			}
+		}
+	}
+	&:nth-child(4n){
+		.pg-features__thumb{
+			&:after{
+				background: $color-orange;
+			}
+		}
+	}
+}
+.pg-features__thumb{
+	position: relative;
+	&:after{
+		content: "";
+		position: absolute;
+		right: -20px;
+		bottom: -20px;
+		height: 70%;
+		width: 80%;
+		background: $color-blue;
+	}
+	& > *{
+		z-index: 1;
+		position: relative;
+	}
+}
+.pg-features__description{
+	@include flexbox();
+	padding-right: 50px;
+}
+.pg-features__icon{
+	@include flex-grow(100);
+	font-size: 60px;
+	display: inline-block;
+	line-height: 65px;
+	color: #303030;
+	padding-right: 35px;
+}
+.pg-features__content{
+	@include flex-shrink(100);
+	h3{
+		color: #303030;
+		text-transform: uppercase;
+		font-size: $h3 + 2;
+		font-weight: 700;
+		margin-bottom: 20px;
+	}
+}
+
+
+@media #{$lg-layout}{
+	.pg-features{
+		&:nth-child(even){
+			.pg-features__description{
+				padding-left: 0;
+			}
+		}
+		
+		.pg-features__description{
+			padding-right: 0;
+		}
+	}
+}
+
+@media #{$md-layout}{
+	.pg-features{
+		margin-top: 50px;
+		&:nth-child(even){
+			.pg-features__description{
+				padding-left: 0;
+			}
+		}
+
+		.pg-features__description{
+			padding-right: 0;
+		}
+	}
+	.pg-features__thumb{
+		margin-left: 20px;
+		display: inline-block;
+		&:after{
+			right: auto;
+			left: -20px;
+		}
+	}
+	.pg-features__description{
+		margin-top: 50px;
+	}
+}
+
+@media #{$sm-layout}{
+	.pg-features{
+		margin-top: 50px;
+		&:nth-child(even){
+			.pg-features__description{
+				padding-left: 0;
+			}
+		}
+
+		.pg-features__description{
+			padding-right: 0;
+		}
+	}
+	.pg-features__thumb{
+		margin-left: 20px;
+		display: inline-block;
+		&:after{
+			right: auto;
+			left: -20px;
+		}
+	}
+	.pg-features__description{
+		margin-top: 50px;
+	}
+}
+
+@media #{$sm-layout}{
+	.pg-features__description{
+		@include flex-wrap(wrap);
+	}
+	.pg-features__icon{
+		margin-bottom: 20px;
+	}
+}

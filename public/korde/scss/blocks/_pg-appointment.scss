@@ -1,0 +1,151 @@
+/**
+Appointment Page Styles
+*/
+.pg-appintment__title{
+	color: $theme-color;
+}
+.pg-appintment__box{
+	.single-input{
+		position: relative;
+		margin-top: 40px;
+		input, textarea, select{
+			border: none;
+			border-bottom: 1px solid #eeeeee;
+			line-height: 28px;
+			padding: 7px 20px;
+			padding-left: 0;
+			font-size: 13px;
+			color: #4b4b4b;
+			font-weight: 400;
+			@include transition(all 0.3s ease-in-out 0s);
+			&:focus, &:active{
+				outline: none;
+				outline: 0;
+				border-color: #000;
+			}
+
+			&:placeholder{
+				font-size: 13px;
+				color: #4b4b4b;
+				font-weight: 400;
+				opacity: 1;
+			}
+
+			&::placeholder{
+				font-size: 13px;
+				color: #4b4b4b;
+				font-weight: 400;
+				opacity: 1;
+			}
+			
+			&:-webkit-placeholder{
+				font-size: 13px;
+				color: #4b4b4b;
+				font-weight: 400;
+				opacity: 1;
+			}
+			
+			&::-webkit-placeholder{
+				font-size: 13px;
+				color: #4b4b4b;
+				font-weight: 400;
+				opacity: 1;
+			}
+
+			&:-moz-placeholder{
+				font-size: 13px;
+				color: #4b4b4b;
+				font-weight: 400;
+				opacity: 1;
+			}
+
+			&::-moz-placeholder{
+				font-size: 13px;
+				color: #4b4b4b;
+				font-weight: 400;
+				opacity: 1;
+			}
+		}
+		input[type="number"]::-webkit-inner-spin-button{
+			-webkit-appearance: none; 
+			margin: 0;
+		}
+		input[type="date"]::-webkit-inner-spin-button{
+			-webkit-appearance: none; 
+			margin: 0;
+		}
+		&.button{
+			text-align: center;
+			margin-top: 70px;
+			button{
+				&:focus, &:active{
+					outline: none;
+				}
+			}
+		}
+
+		.select2-container .select2-selection--single{
+			border: none;
+			border-bottom: 1px solid #eeeeee;
+			line-height: 28px;
+			padding: 0;
+			font-size: 13px;
+			color: #4b4b4b;
+			font-weight: 400;
+			&:focus, &:active{
+				outline: none;
+			}
+			&:focus{
+				border-color: #000;
+			}
+
+			.select2-selection__rendered{
+				color: #4b4b4b;
+				padding-left: 0;
+			}
+		}
+
+	}
+	.col-lg-6{
+		&:nth-child(even){
+			.single-input{
+				margin-left: 30px;
+			}
+		}
+		&:nth-child(odd){
+			.single-input{
+				margin-right: 30px;
+			}
+		}
+	}
+	p.form-message{
+		padding-top: 15px;
+		margin-bottom: 0;
+		&.success{
+			color: $color-green;
+		}
+		&.error{
+			color: $color-orange;
+		}
+	}
+
+
+}
+
+@media #{$md-layout}{
+	.pg-appintment__box .col-lg-6:nth-child(odd) .single-input{
+		margin-right: 0;
+	}
+	.pg-appintment__box .col-lg-6:nth-child(even) .single-input{
+		margin-left: 0;
+	}
+}
+
+@media #{$sm-layout}{
+	.pg-appintment__box .col-lg-6:nth-child(odd) .single-input{
+		margin-right: 0;
+	}
+	.pg-appintment__box .col-lg-6:nth-child(even) .single-input{
+		margin-left: 0;
+	}
+}

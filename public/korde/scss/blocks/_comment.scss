@@ -1,0 +1,112 @@
+/**
+Commentbox & Commentlist Style
+*/
+
+/* Commentlist */
+.comment{
+	@include flexbox();
+	margin-top: 60px;
+	&:first-child{
+		margin-top: 0;
+	}
+	&.reply{
+		margin-left: 150px;
+	}
+}
+.comment__content{
+	@include flex-shrink(100);
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include justify-content(space-between);
+	@include align-items(center);
+	a.reply{
+		font-size: 14px;
+		color: $theme-color;
+		font-weight: 600;
+		text-transform: uppercase;
+		&:hover{
+			color: $color-orange;
+		}
+	}
+}
+.comment__content__top{
+	margin-right: 30px;
+	margin-bottom: 10px;
+	h6{
+		margin-bottom: 0;
+		font-size: 16px;
+		font-weight: 700;
+		color: #5f5f5f;
+		text-transform: uppercase;
+	}
+	span{
+		font-size: 14px;
+		line-height: 20px;
+		color: #a2a2a2;
+		font-weight: 400;
+		text-transform: uppercase;
+	}
+}
+.comment__content__bottom{
+	@include flex(0 0 100%)
+}
+
+
+/* Commentbox */
+.commentbox{
+	.single-input{
+		position: relative;
+		margin-top: 50px;
+		label{
+			position: absolute;
+			left: 0;
+			top: 10px;
+			font-size: 13px;
+			color: #4b4b4b;
+			font-weight: 400;
+			@include transition(all 0.5s cubic-bezier(0.68, 0.01, 0.32, 0.99) 0s);
+			&.state-change{
+				top: -20px;
+			}
+		}
+		input, textarea{
+			border: none;
+			border-bottom: 1px solid #eeeeee;
+			line-height: 28px;
+			padding: 7px 20px;
+			color: #5b5b5b;
+			&:focus, &:active{
+				outline: none;
+				outline: 0;
+			}
+		}
+	}
+}
+
+
+
+@media #{$sm-layout}{
+	.comment.reply {
+	    margin-left: 50px;
+	}
+}
+
+@media #{$xs-layout}{
+	.comment.reply {
+	    margin-left: 30px;
+	}
+	.comment{
+		margin-top: 38px;
+		@include flex-wrap(wrap);
+	}
+	.comment__content{
+		padding-top: 20px;
+	}
+	.pg-blog-authorbox{
+		@include flex-wrap(wrap);
+		padding: 20px;
+	}
+	.pg-blog-authordes{
+		padding-top: 20px;
+	}
+}
