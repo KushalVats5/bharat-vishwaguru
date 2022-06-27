@@ -2,179 +2,170 @@
 <html class="no-js" lang="zxx">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Taxring - Online e-file Tax Return, ITR Filing,TDS Refund,Income tax return,GST Registration,Company
-        Registration,Accounting etc..</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="{{ asset('korde/images/favicon.jpeg') }}">
-    <link rel="apple-touch-icon" href="{{ asset('korde/images/icon.png') }}">
-
-    <!-- Google font (font-family: 'Josefin Sans', sans-serif;) -->
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('site/css/style.css') }}">
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="{{ asset('korde/css/bootstrap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('korde/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('korde/css/plugins.css') }}">
-    <link rel="stylesheet" href="{{ asset('korde/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('korde/style.css') }}"> --}}
 
     <!-- Cusom css -->
-    <link rel="stylesheet" href="{{ asset('korde/css/custom.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('korde/css/custom.css') }}"> --}}
 
-    <!-- Modernizer js -->
-    <script src="{{ asset('korde/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+    <title>Bharat Vishwaguru</title>
 </head>
 
-<body>
-    <!--[if lte IE 9]>
-  <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
- <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="fakeloader"></div>
+<body class="{{ \Cache::get('theme') }}">
+
     <!-- Main wrapper -->
-    <div class="wrapper" id="wrapper">
-        <!-- Header -->
-        <header id="header" class="header sticky--header">
-            @include('top-header')
+
+    <main class="main-container">
+        <header>
+            @include('header')
         </header>
-        <!-- //Header -->
-        @include('header')
-        <div class="container">
+
+        @include('sidebar')
+        @yield('banner')
+        {{-- <div class="container user-dashboard-nav" style="margin-top: 8%;">
             <div class="row">
                 <div class="col-sm-12">
                     @include('client-navigation')
                 </div>
             </div>
             <div class="clear-fix">&nbsp;</div>
-        </div>
-        <main class="page-content">
-            <div class="container">
-                @yield('content')
-            </div>
-        </main>
-        <div class="clear-fix">&nbsp;</div>
-        <!-- //Page Conent -->
-        @include('footer')
-    </div>
+        </div> --}}
+        @yield('content')
+    </main>
+    <!-- //Page Conent -->
+    @include('footer')
     <!-- //Main wrapper -->
 
     <!-- JS Files -->
-    <script src="{{ asset('korde/js/vendor/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('korde/js/popper.min.js') }}"></script>
-    <script src="{{ asset('korde/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('korde/js/plugins.js') }}"></script>
-    <script src="{{ asset('korde/js/active.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="{{ asset('korde/js/scripts.js') }}"></script>
     <script>
-    let user_ajax_url = "<?php echo url('tr/user/'); ?>";
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        let user_ajax_url = "<?php echo url('tr/user/'); ?>";
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function changeTheme(theme) {
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('theme-change') }}",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    theme: theme
+                },
+                success: function(response) {
+                    // console.log(response.responseText);
+                    // alert(response.message);
+                    // $('.section-search-'+id).remove();
+                },
+                error: function(jqXHR, exception) {
+                    // console.log(jqXHR);
+                    // console.log(exception);
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 401) {
+                        msg = 'Unauthorized: ' + jqXHR.responseJSON.message;
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500]. ' + jqXHR.responseJSON.message;
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error: ' + jqXHR.responseJSON.message;
+                    }
+                    // alert(msg);
+                }
+            });
         }
+        $(document).ready(function() {
+            $('.light-theme-active').click(function() {
+                $('.theme-change li a').removeClass('active');
+                changeTheme('light-theme');
+                $('body').addClass('light-theme');
+                $(this).addClass('active');
+            })
+            $('.dark-theme-active').click(function() {
+                changeTheme('dark-theme');
+                $('.theme-change li a').removeClass('active');
+                $('body').removeClass('light-theme');
+                $(this).addClass('active');
+            })
+        });
+          // Save Like Or Dislike
+    $(document).on('click', '.saveLikeDislike', function (e) {
+        e.preventDefault();
+        var _post = $(this).data('post');
+        var _type = $(this).data('type');
+        var vm = $(this).find('.likeDislike');
+        // Run Ajax
+        $.ajax({
+            url: "{{ url('save-likedislike') }}",
+            type: "post",
+            dataType: 'json',
+            data: {
+                post: _post,
+                type: _type,
+                _token: "{{ csrf_token() }}"
+            },
+            beforeSend: function () {
+                vm.addClass('disabled');
+            },
+            success: function (res) {
+                if (res.success == true) {
+                    vm.removeClass('disabled').addClass('active');
+                    vm.removeAttr('id');
+                    var _prevCount = $("." + _type + "-count").text();
+                    _prevCount++;
+                    $("." + _type + "-count").text(_prevCount);
+                    alert(res.message);
+                }
+            },
+            error: function (jqXHR, exception) {
+                // console.log(jqXHR);
+                // console.log(exception);
+                var msg = '';
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect.\n Verify Network.';
+                } else if (jqXHR.status == 401) {
+                    msg = 'Unauthorized: ' + jqXHR.responseJSON.message;
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500]. ' + jqXHR.responseJSON.message;
+                } else if (exception === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (exception === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (exception === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    msg = 'Uncaught Error: ' + jqXHR.responseJSON.message;
+                }
+                alert(msg);
+            }
+        });
     });
     </script>
-    <script src="https://kit.fontawesome.com/59e9e8345f.js" crossorigin="anonymous"></script>
+    @yield('style')
     @yield('script')
 </body>
-<style>
-body {
-    overflow-x: hidden;
-    font-size: 18px;
-    line-height: 28px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: "Josefin Sans", sans-serif;
-    color: #4B4B4B;
-    font-weight: 300;
-}
-
-.banner-cls.img-thumbnail.img-fluid {
-    background-image: url(https://taxring.com/korde/images/bg/2.jpg);
-    background-size: contain;
-    background-position: initial;
-    background-repeat: no-repeat;
-    background-attachment: inherit;
-    position: relative;
-    left: 0px;
-    top: 0px;
-    z-index: 999;
-    opacity: 1;
-}
-
-.cr-breadcrumb-area {
-    height: 250px;
-}
-
-.cr-breadcrumb {
-    margin-top: 12%;
-}
-
-.banner__single__content h1 {
-    width: 80%;
-}
-
-.banner__single__content h1 {
-    font-size: 30px;
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .banner__single__content h1 {
-        font-size: 25px;
-        line-height: 48px;
-        width: 60%;
-    }
-
-    a.cr-btn,
-    button.cr-btn,
-    .cr-btn {
-        float: left;
-        margin-left: 20%;
-        -webkit-transition: border-color 0.5s ease-in-out 0s;
-        -moz-transition: border-color 0.5s ease-in-out 0s;
-        -ms-transition: border-color 0.5s ease-in-out 0s;
-        -o-transition: border-color 0.5s ease-in-out 0s;
-        transition: border-color 0.5s ease-in-out 0s;
-    }
-}
-
-@media only screen and (max-width: 575px) {
-    .banner__single__content h1 {
-        font-size: 12px;
-        line-height: 31px;
-        width: 55%;
-        text-align: justify;
-    }
-
-    .cr-breadcrumb h1 {
-        font-size: 30px;
-    }
-
-    .banner__single__content {
-        padding: initial;
-        color: #fff;
-        text-transform: uppercase;
-    }
-
-    .banner-cls.img-thumbnail {
-        background-image: url(https://taxring.com/korde/images/bg/2.jpg);
-        background-size: contain;
-        background-position: initial;
-        background-repeat: no-repeat !important;
-        background-attachment: inherit;
-        width: 367px;
-        position: relative;
-        left: 0px;
-        top: 0px;
-        z-index: 999;
-        opacity: 1;
-    }
-}
-</style>
 
 </html>

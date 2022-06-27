@@ -83,7 +83,7 @@ class RegisterController extends Controller
             'is_active' => 1,
         ]);
 
-        $form = [];
+        /* $form = [];
         $form['name'] = 'Registration Form';
         // dd($user);
         $messages = $user;
@@ -98,7 +98,7 @@ class RegisterController extends Controller
             $message->sender($user->email, 'Taxring');
             $message->subject('Taxring || New Registration');
             $message->to('support@taxring.com');
-        });
+        }); */
 
         if ($data['role'] == "freelancer") {
             # code...
@@ -121,39 +121,11 @@ class RegisterController extends Controller
             $file->move($destinationPath, $fileName);
             $user->education_certificate = $fileName;
         }
-        if ($request->hasFile('pancard')) {
-            $file = $request->file('pancard');
-            $fileName = $file->getClientOriginalName();
-            $destinationPath = public_path() . '/uploads/';
-            $file->move($destinationPath, $fileName);
-            $user->pancard = $fileName;
-        }
-        if ($request->hasFile('aadhar')) {
-            $file = $request->file('aadhar');
-            $fileName = $file->getClientOriginalName();
-            $destinationPath = public_path() . '/uploads/';
-            $file->move($destinationPath, $fileName);
-            $user->aadhar = $fileName;
-        }
-        if ($request->hasFile('resume')) {
-            $file = $request->file('resume');
-            $fileName = $file->getClientOriginalName();
-            $destinationPath = public_path() . '/uploads/';
-            $file->move($destinationPath, $fileName);
-            $user->resume = $fileName;
-        }
-        if ($request->hasFile('cancel_cheque')) {
-            $file = $request->file('cancel_cheque');
-            $fileName = $file->getClientOriginalName();
-            $destinationPath = public_path() . '/uploads/';
-            $file->move($destinationPath, $fileName);
-            $user->cancel_cheque = $fileName;
 
-        }
         // $user->email = Str::random(6).'@getnada.com';
         $user->password = Hash::make($request->password);
         $user->is_active = 0;
-        $user->bank = json_encode($request->bank);
+
         // dd($user, $request->all());
         // $user->save() ;
         try {
@@ -167,7 +139,7 @@ class RegisterController extends Controller
                 }
                 // $user = User::find(176) ;
                 // return view('mail.new-register');
-                Mail::send('mail.new-register', ['data' => $user], function ($message) use ($user) {
+               /*  Mail::send('mail.new-register', ['data' => $user], function ($message) use ($user) {
                     $message->sender('support@taxring.com', 'Taxring');
                     $message->subject('Taxring || New Registration');
                     $message->to($user->email);
@@ -183,7 +155,8 @@ class RegisterController extends Controller
                     return redirect()->back()->with('error', 'Registeraition failed !!!');
                 } else {
                     return redirect()->back()->with('success', 'Your are successfully registered, wait for approval by admin!!!');
-                }
+                } */
+                return redirect()->back()->with('success', 'Your are successfully registered, wait for approval by admin!!!');
             } else {
                 return redirect()->back()->with('error', 'Registeraition failed !!!');
             }

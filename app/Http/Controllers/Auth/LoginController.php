@@ -47,6 +47,10 @@ class LoginController extends Controller
         }
         event(new UserEvent($request, $user));
     }
+    public function adminLogin(Request $request)
+    {
+        return view('auth.admin-login');
+    }
 
     //added to overwrite the login credentials
     protected function credentials(Request $request)
@@ -71,7 +75,8 @@ class LoginController extends Controller
         } elseif (in_array('support', $roles)) {
             return '/tr/support/dashboard';
         } else {
-            return '/tr/user/dashboard';
+            // return '/tr/user/dashboard';
+            return '/';
         }
 
     }

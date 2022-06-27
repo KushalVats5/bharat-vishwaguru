@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.57.0" platform="windows">
+	<Servers>
+		<Server>
+			<Host>35.85.184.249</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>ftpuser</User>
+			<Pass encoding="base64">ZnRwdXNlcg==</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_DEFAULT</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>bharat-vishwaguru</Name>
+			<Comments>HOST: 35.85.184.249
+Username: ftpuser
+Password: ftpuser
+
+DB Details
+terminal access /applications/MAMP/library/bin/mysql -h bharatvish.cdad5t7e4e10.us-west-2.rds.amazonaws.com -P 3306 -u bharatvish -p
+
+host:  bharatvish.cdad5t7e4e10.us-west-2.rds.amazonaws.com
+user: bharatvish
+password: UBY6lzpkoqtZdJUDLgPr</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+	</Servers>
+</FileZilla3>

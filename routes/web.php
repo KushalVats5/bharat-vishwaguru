@@ -14,9 +14,11 @@ use App\Http\Controllers\Admin\AssignFreelancerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FreeLancerController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\FormListingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SubsPaymentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -49,8 +51,11 @@ Route::get('/', [
     'as' => 'root',
     'uses' => 'HomeController@index',
 ]);
+Route::get('admin/login', [LoginController::class, 'adminLogin'])->name('admin.login');
 Route::get('about-us', [HomeController::class, 'about'])->name('aboutus');
 Route::get('blog', [HomeController::class, 'blog'])->name('blog');
+Route::get('videos', [HomeController::class, 'videos'])->name('videos');
+Route::get('saved-items', [HomeController::class, 'savedItems'])->name('saved.items');
 Route::get('service', [HomeController::class, 'services'])->name('services');
 Route::post('servicesq', [HomeController::class, 'serviceplans'])->name('serviceplans');
 Route::get('freelancer', [HomeController::class, 'freelancer'])->name('freelancer');
@@ -68,10 +73,34 @@ Route::get('/blog/{slug}', [
     'as' => 'dynamicArticle',
     'uses' => 'HomeController@dynamicArticle',
 ]);
+Route::get('/video/{slug}', [
+    'as' => 'dynamicArticleVideo',
+    'uses' => 'HomeController@dynamicArticleVideo',
+]);
+Route::get('/articles-search', [
+    'as' => 'articles.search',
+    'uses' => 'HomeController@searchArticle',
+]);
+Route::post('/ajax-save-items', [
+    'as' => 'ajax.save.items',
+    'uses' => 'HomeController@ajaxSaveItems',
+]);
+Route::post('/ajax.remove.items', [
+    'as' => 'ajax.remove.items',
+    'uses' => 'HomeController@ajaxRemoveItems',
+]);
+Route::post('/change-theme', function(){
+    \Cache::put("theme", request()->theme);
+})->name('theme-change');
+
+// Like Or Dislike
+Route::post('save-likedislike',[HomeController::class, 'save_likedislike'])->name('save_likedislike');
 
 Route::get('/category/{slug}', [HomeController::class, 'dynamicCategory'])->name('dynamicCategory');
 
 Route::get('/service/{slug}', [HomeController::class, 'dynamicService'])->name('dynamicService');
+Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
+
 
 /* TR routes --begin */
 Route::group(['middleware' => 'auth'], function () {
@@ -106,6 +135,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/tr/admin/gst/all', [App\Http\Controllers\TR\Admin\GSTController::class, 'index'])->middleware('role:admin')->name('tr/admin/gst/all');
         Route::get('/tr/admin/gst/edit/{id}', [App\Http\Controllers\TR\Admin\GSTController::class, 'edit'])->middleware('role:admin')->name('tr/admin/gst/edit');
         Route::post('/tr/admin/gst/save', [App\Http\Controllers\TR\Admin\GSTController::class, 'save_gst'])->middleware('role:admin')->name('tr/admin/gst/save');
+
+        Route::get('/tr/admin/comments', [App\Http\Controllers\TR\Admin\CommentController::class, 'index'])->middleware('role:admin')->name('tr.comments.index');
+        Route::get('/tr/admin/dashboard/postviews', [App\Http\Controllers\TR\Admin\DashboardController::class, 'post_views'])->middleware('role:admin')->name('tr.dashboard.post_views');
 
         Route::resource('/tr/admin/page', 'TR\Admin\PageController');
         Route::resource('/tr/admin/service', 'TR\Admin\ServiceController');
@@ -151,6 +183,8 @@ Route::group(['middleware' => 'auth'], function () {
     // client/user routes
     Route::group(['middleware' => 'role:user'], function () {
         Route::get('/tr/user/dashboard', [App\Http\Controllers\TR\Client\DashboardController::class, 'index'])->middleware('role:user')->name('tr/user/dashboard');
+        Route::get('/tr/user/profile', [App\Http\Controllers\TR\Client\DashboardController::class, 'myProfile'])->middleware('role:user')->name('tr/user/profile');
+        Route::post('/tr/user/profile/update', [App\Http\Controllers\TR\Client\DashboardController::class, 'updateProfile'])->middleware('role:user')->name('tr/user/profile/update');
         Route::get('/tr/user/un-authorized', [App\Http\Controllers\TR\Client\DashboardController::class, 'unauthorized_access'])->name('tr/user/un-authorized');
 
         Route::get('/tr/user/itr', [App\Http\Controllers\TR\Client\ITRController::class, 'index'])->middleware('role:user')->name('tr/user/itr');

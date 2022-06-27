@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use File;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -21,6 +22,27 @@ class PageController extends Controller
      */
     public function __construct()
     {
+        if(!File::isDirectory(storage_path('app/public/uploads/banner/'))){
+            File::makeDirectory(storage_path('app/public/uploads/banner/'), 0777, true, true);
+        }
+        if(!File::isDirectory(storage_path('app/public/uploads/thumbnails/'))){
+            File::makeDirectory(storage_path('app/public/uploads/thumbnails/'), 0777, true, true);
+        }
+        if(!File::isDirectory(storage_path('app/public/uploads/images/'))){
+            File::makeDirectory(storage_path('app/public/uploads/images/'), 0777, true, true);
+        }
+        if(!File::isDirectory(storage_path('app/public/uploads/images/large'))){
+            File::makeDirectory(storage_path('app/public/uploads/images/large'), 0777, true, true);
+        }
+        if(!File::isDirectory(storage_path('app/public/uploads/images/medium'))){
+            File::makeDirectory(storage_path('app/public/uploads/images/medium'), 0777, true, true);
+        }
+        if(!File::isDirectory(storage_path('app/public/uploads/images/thumbnails'))){
+            File::makeDirectory(storage_path('app/public/uploads/images/thumbnails'), 0777, true, true);
+        }
+        if(!File::isDirectory(storage_path('app/public/uploads/featured/'))){
+            File::makeDirectory(storage_path('app/public/uploads/featured/'), 0777, true, true);
+        }
         $this->middleware(['role:super-admin|admin']);
     }
 
@@ -219,18 +241,23 @@ class PageController extends Controller
                 $page->page_image = json_encode($images);
                 } */
 
-                if ($request->hasFile('page_image')) {
-                    $file = $request->file('page_image');
+                /* if ($request->hasFile('featured_image')) {
+                    $file = $request->file('featured_image');
                     if (!$file->isValid()) {
                         return redirect()->route('page.index')->with(['warning' => 'Page image file is not valid.']);
                     }
                     //$images = Helper::upload_image($request, 'page_image');
-                    $images = Helper::uploadImage($request, 'page_image', [[150, 150], [1400, null]]);
+                    $images = Helper::uploadImage($request, 'featured_image', [[150, 150], [1400, null]]);
 
                     $page->page_image = json_encode($images);
 
                 }
+ */
+                if ($request->featured_image) {
+                    $images = Helper::upload_image($request, 'featured_image');
+                    $page->page_image = json_encode($images);
 
+                }
                 $page->save();
 
                 return redirect()->route('page.index')->with('warning', "The $page->title was updated successfully");

@@ -75,12 +75,12 @@
                                     $image = json_decode($page->page_image);
                                     //dd($image);
                                     @endphp
-                                    <a href="javascript;" class="avatar border-gray">
-                                        <img src="{{ $image->thumbnails }}" alt="blog thumb" width="150" height="">
+                                    <a href="javascript;" target="_blank" class="avatar border-gray">
+                                        <img src="{{ $image->thumbnail }}" alt="blog thumb" width="" height="">
                                     </a>
 
                                     @else
-                                    <a href="javascript;" class="avatar border-gray">
+                                    <a href="javascript;" target="_blank" class="avatar border-gray">
                                         <img src="{{ asset('korde/images/blog/blog-thumbnail-1.jpg') }}" alt="blog thumb">
                                     </a>
                                     @endif

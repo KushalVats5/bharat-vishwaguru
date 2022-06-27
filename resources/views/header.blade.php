@@ -1,240 +1,74 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-
-<!-- Header Bottom Area -->
-<div class="header__bottom bg--white">
-    <div class="container d-none d-lg-block">
-        <div class="header__bottom__inner">
-            <div class="header__logo">
-                <a href="{{ route('root') }}">
-                    <img src="{{ asset('storage/default/taxring.jpg') }}" alt="header logo" width="180px" height="60px">
-                </a>
-            </div>
-
-            <!-- Main Navigation -->
-            <nav id="main-navigation" class="header__menu main-navigation">
-                <ul>
-                    <li class="">
-                        <a href=" {{ route('root') }}">Home</a>
-                    </li>
-                    <li class="">
-                        <a href=" {{ route('dynamicService', 'salary-tax-return') }}">Income Tax</a>
-                    </li>
-                    <li class="">
-                        <a href=" {{ route('dynamicService', 'bussiness-tax-return') }}">GST</a>
-                    </li>
-                    <li class="">
-                        <a href=" {{ route('dynamicService', 'accounting') }}">Accounting</a>
-                    </li>
-                    <li class="">
-                        <a href=" {{ route('root') }}">Tax Saving</a>
-                    </li>
-                    <li class="cr-dropdown">
-                        <a href="#">Registraitions</a>
-                        <ul class="cr-dropdown-menu">
-                            <li class="nav-item">
-                                <a class=""
-                                    href="{{ route('dynamicService', 'importexport-code-registration') }}">IMPORT/EXPORT
-                                    CODE REGISTRATION</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="" href="{{ route('dynamicService', 'pfes-registration') }}">PF/ESIC
-                                    REGISTRATION</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="" href="{{ route('dynamicService', 'file-tds-return') }}">TRUST / NGO
-                                    REGISTRATION</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="" href="{{ route('dynamicService', 'pen-card') }}">PAN CARD
-                                    (NEW/CORRECTION)</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="" href="{{ route('dynamicService', 'msme-registration') }}">MSME
-                                    REGISTRATION</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="" href="{{ route('dynamicService', 'company-registration-fee') }}">COMPANY /
-                                    FIRM REGISTRATION</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <a href=" {{ route('freelancer') }}">Freelancer</a>
-                    </li>
-                </ul>
-            </nav>
-            <!--// Main Navigation -->
-
-        </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="container d-block d-lg-none">
-        <div class="mobile-menu clearfix d-md-block d-lg-none">
-            <a href="{{ route('root') }}">
-                <img src="{{ asset('storage/default/taxring.jpg') }}" alt="header logo" width="180px" height="60px">
-            </a>
-        </div>
-    </div>
-    <!-- //Mobile Menu -->
-
-
-
-
+<a href="{{route('root')}}" class="logo">
+    <img src="{{ asset('site/images/black-logo.png') }}" alt="logo">
+</a>
+<div class="search-box">
+    <form method="GET" action="{{ route('articles.search') }}">
+        {{-- @csrf --}}
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" name="s" value="{{request()->s}}" class="form-control">
+        <button class="search-btn">Search</button>
+    </form>
 </div>
-<!--// Header Bottom Area -->
-<header class="header large-none">
-
-    <div class="container clearfix">
-
-        <a class="logo float-left" href="#"><img src="{{ asset('storage/default/taxring.jpg') }}" alt="header logo"
-                width="180px" height="60px"></a>
-        <button type="button" class="nav-button hidden-block">
-            <span class="icon-bar1">
-                <!-- menu strip 1 -->
-            </span>
-            <span class="icon-bar2">
-                <!-- menu strip 2 -->
-            </span>
-            <span class="icon-bar3">
-                <!-- menu strip 3 -->
-            </span>
-        </button>
-        <nav class="navbar float-right site-main-navbar">
-
-            <ul class="nav">
-                <li class="">
-                    <a href=" {{ route('dynamicService', 'salary-tax-return') }}">Income Tax</a>
+<div class="right">
+    <div class="notification">
+        <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M10.5 24C9.86996 23.997 9.26644 23.7541 8.81982 23.3237C8.3732 22.8934 8.11936 22.3101 8.11312 21.7H12.8631C12.8656 22.0075 12.8051 22.3124 12.685 22.597C12.5314 22.9383 12.2963 23.2393 11.999 23.4752C11.7017 23.7111 11.3507 23.8753 10.975 23.954H10.9192C10.7812 23.9818 10.6409 23.9972 10.5 24ZM20 20.55H1V18.25L3.375 17.1V10.775C3.31244 9.15249 3.6908 7.54249 4.47225 6.106C4.85681 5.44736 5.3812 4.87517 6.01083 4.42717C6.64047 3.97917 7.36104 3.66555 8.125 3.507V1H12.875V3.507C15.9376 4.2131 17.625 6.7937 17.625 10.775V17.1L20 18.25V20.55Z"
+                stroke="#CACEE5" stroke-width="2">
+        </svg>
+        <span class="counter">1</span>
+        <div class="dropdown">
+            <h3>Notification <a href="#">View All</a></h3>
+            <ul>
+                <li>
+                    <img src="{{ asset('site/images/profile.png') }}" alt="profile">
+                    <div class="profile-view">
+                        <h4>Adam Smith</h4>
+                        <p>Likes Your comment</p>
+                    </div>
+                    <span>2 Days ago</span>
                 </li>
-                <li class="">
-                    <a href=" {{ route('dynamicService', 'bussiness-tax-return') }}">GST</a>
-                </li>
-                <li class="">
-                    <a href=" {{ route('dynamicService', 'accounting') }}">Accounting</a>
-                </li>
-                <li class="">
-                    <a href=" {{ route('root') }}">Tax Saving</a>
-                </li>
-                <li class="cr-dropdown">
-                    <a href="#">Registraitions</a>
-                    <ul class="cr-dropdown-menu" style="display: none;">
-                        <li class="nav-item">
-                            <a class=""
-                                href="{{ route('dynamicService', 'importexport-code-registration') }}">IMPORT/EXPORT
-                                CODE REGISTRATION</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="" href="{{ route('dynamicService', 'pfes-registration') }}">PF/ESIC
-                                REGISTRATION</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="" href="{{ route('dynamicService', 'file-tds-return') }}">TRUST / NGO
-                                REGISTRATION</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="" href="{{ route('dynamicService', 'pen-card') }}">PAN CARD (NEW/CORRECTION)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="" href="{{ route('dynamicService', 'msme-registration') }}">MSME REGISTRATION</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="" href="{{ route('dynamicService', 'company-registration-fee') }}">COMPANY / FIRM
-                                REGISTRATION</a>
-                        </li>
-                    </ul>
-                </li>
-                {{-- <li><a href="#">Make an appointment</a></li> --}}
-                <li class="cr-dropdown">
-                    <a href="#">My Account</a>
-                    <ul class="cr-dropdown-menu" style="display: none;">
-                        @if (Route::has('login'))
-                        @auth
-                        <li class="nav-item">
-                            <a class="" href=" {{ url('/home') }}">Account</a>\
-                        </li>
-                        @else
-                        <li class="nav-item">
-                            <a class="" href=" {{ route('login') }}">Login</a>
-                        </li>
-
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="" href=" {{ route('register') }}">Register</a>
-                        </li>
-                        @endif
-                        @endauth
-                        @endif
-                    </ul>
+                <li>
+                    <img src="{{ asset('site/images/profile.png') }}" alt="profile">
+                    <div class="profile-view">
+                        <h4>Adam Smith</h4>
+                        <p>Likes Your comment</p>
+                    </div>
+                    <span>2 Days ago</span>
                 </li>
             </ul>
-        </nav>
-
+        </div>
     </div>
-
-</header>
-<!--Header Section End-->
-
-
-<script>
-var windowWindth;
-var clearTimeout;
-(function($) {
-    windowWindth = $(window).width();
-
-
-    $('.nav-button').on('click', function(event) {
-        if (windowWindth < 768) {
-            event.stopPropagation();
-            $("body").toggleClass('slide-nav');
-        }
-    });
-
-    if ($("body.nav-toggle").length > 0) {
-        $('.nav-button').on('click', function() {
-            if (windowWindth < 768) {
-                $(this).parents('.navbar').find('.nav').slideToggle();
-            }
-        });
-    }
-    $(".nav").on("click", function(event) {
-        event.stopPropagation();
-    });
-
-    $(".nav li").off("click", ".nav li").on("click", function(event) {
-        if (windowWindth < 768) {
-            event.stopPropagation();
-            $(this).siblings().removeClass("active");
-            $(this).siblings().find("active").removeClass("active");
-            $(this).siblings().find("ul").slideUp();
-            $(this).toggleClass("active");
-            $(this).children("ul").slideToggle();
-        }
-    })
-
-    $("a").on("click", function(event) {
-        if ($(this).attr("href") == "#")
-            event.preventDefault();
-    })
-
-    $(window).on('click', function() {
-        $("body").removeClass('slide-nav');
-    });
-
-
-})(jQuery);
-
-
-
-$(window).resize(function() {
-    clearInterval(clearTimeout);
-    clearTimeout = setTimeout(function() {
-
-        windowWindth = $(window).width();
-        if (windowWindth > 768) {
-            $('body').find('.nav li').find('ul').removeAttr('style');
-        }
-        console.log(windowWindth);
-    }, 200)
-})
-</script>
+    <div class="profile-image">
+        <img src="{{ asset('site/images/profile.png') }}" alt="profile">
+        <div class="profile-name">
+            <span>{{ Auth::check() ? Auth::user()->name : 'My Acoount' }}</span>
+            <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L8.5 8.5L16 1" stroke="#FE5557" stroke-width="2" />
+            </svg>
+            <div class="dropdown">
+                <ul>
+                    <li><a href="#">Account & Privacy</a></li>
+                    <!-- <li><a href="#">Logout</a></li> -->
+                    @if (Auth::check())
+                        <li>
+                            <a class="nav-link btn-magnify" href="{{ route('logout') }}" onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                                <i class="nc-icon nc-user-run"></i>
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                        {{-- <li><a href="{{ route('user.profile') }}">Logout</a></li> --}}
+                    @else
+                    <li><a href="{{ route('login') }}">{{__('Login')}}</a></li>
+                    <li><a href="{{ route('register') }}">{{__('Register')}}</a></li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

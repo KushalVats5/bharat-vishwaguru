@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Str;
 use App\User;
+use App\Comment;
 
 class Article extends Model
 {
@@ -49,12 +50,12 @@ class Article extends Model
     {
         return $this->hasMany('App\Capturegc');
     }
-    public function author($id)
+    /* public function author($id)
     {
         $user = User::find($id);
         $name = $user->title;
         return $name;
-    }
+    } */
 
     public static function pageCount()
     {
@@ -64,4 +65,43 @@ class Article extends Model
     public function category(){
         return $this->belongsToMany(Category::class, 'article_category', 'article_id', 'category_id');
     }
+    public function author(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function likes(){
+        return $this->hasMany('App\LikeDislike','post_id')->sum('like');
+    }
+    // Dislikes
+    public function dislikes(){
+        return $this->hasMany('App\LikeDislike','post_id')->sum('dislike');
+    }
+    /**
+     * Write Your Code..
+     *
+     * @return string
+    */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id')->where('is_approved', 'Approved');
+    }
+    /**
+     * Write Your Code..
+     *
+     * @return string
+    */
+    public function commentsCounts()
+    {
+        return $this->hasMany(Comment::class)->where('is_approved', 'Approved');
+    }
+    /**
+     * Write Your Code..
+     *
+     * @return string
+    */
+    public function view_count()
+    {
+        return $this->hasMany(PostView::class, 'id_post');
+    }
+
 }

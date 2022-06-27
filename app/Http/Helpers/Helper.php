@@ -34,9 +34,10 @@ class Helper
         $image_resize = Image::make($image->getRealPath());
         $filename = rand() . $filename;
 
-        $fname = $filename . '-1920x700.' . $extension;
-        $image_resize->resize(1920, 700, function ($constraint) {
-            $constraint->aspectRatio();
+        // $fname = $filename . '-1920x700.' . $extension;
+        $fname = $filename . '-1330x600.' . $extension;
+        $image_resize->resize(1330, 600, function ($constraint) {
+            // $constraint->aspectRatio();
             $constraint->upsize();
         });
         $image_resize->save(storage_path('app/public/uploads/banner/' . $fname));
@@ -83,16 +84,17 @@ class Helper
         $large_size = [1920, 700];
         $image_sizes = [];
         $random_string = time() . '-' . rand(9, 9999) . '-';
-
+dd($request->file($request->$image_name));
         $image = $request->file($image_name);
         $file = $image->getClientOriginalName();
+
         $input['name'] = pathinfo($file, PATHINFO_FILENAME);
 
         $input['ext'] = $image->getClientOriginalExtension();
 
         $input['file'] = $input['name'] . $random_string . 'full.' . $input['ext'];
 
-        $destinationPath = public_path('/uploads/images/');
+        $destinationPath = storage_path('app/public/uploads/images/');
         $imgFile = Image::make($image->getRealPath());
 
         // save large size
@@ -346,4 +348,103 @@ class Helper
 
         return $bytes;
     }
+
+
+    // PHP program to convert timestamp
+    // to time ago
+    public static function timeAgo($date) {
+        $time = strtotime($date);
+        // Calculate difference between current
+        // time and given timestamp in seconds
+        $diff     = time() - $time;
+
+        // Time difference in seconds
+        $sec     = $diff;
+
+        // Convert time difference in minutes
+        $min     = round($diff / 60 );
+
+        // Convert time difference in hours
+        $hrs     = round($diff / 3600);
+
+        // Convert time difference in days
+        $days     = round($diff / 86400 );
+
+        // Convert time difference in weeks
+        $weeks     = round($diff / 604800);
+
+        // Convert time difference in months
+        $mnths     = round($diff / 2600640 );
+
+        // Convert time difference in years
+        $yrs     = round($diff / 31207680 );
+
+        // Check for seconds
+        if($sec <= 60) {
+            $agoTime = "$sec seconds ago";
+        }
+
+        // Check for minutes
+        else if($min <= 60) {
+            if($min==1) {
+                $agoTime = "one minute ago";
+            }
+            else {
+                $agoTime = "$min minutes ago";
+            }
+        }
+
+        // Check for hours
+        else if($hrs <= 24) {
+            if($hrs == 1) {
+                $agoTime = "an hour ago";
+            }
+            else {
+                $agoTime = "$hrs hours ago";
+            }
+        }
+
+        // Check for days
+        else if($days <= 7) {
+            if($days == 1) {
+                $agoTime = "Yesterday";
+            }
+            else {
+                $agoTime = "$days days ago";
+            }
+        }
+
+        // Check for weeks
+        else if($weeks <= 4.3) {
+            if($weeks == 1) {
+                $agoTime = "a week ago";
+            }
+            else {
+                $agoTime = "$weeks weeks ago";
+            }
+        }
+
+        // Check for months
+        else if($mnths <= 12) {
+            if($mnths == 1) {
+                $agoTime = "a month ago";
+            }
+            else {
+                $agoTime = "$mnths months ago";
+            }
+        }
+
+        // Check for years
+        else {
+            if($yrs == 1) {
+                $agoTime = "one year ago";
+            }
+            else {
+                $agoTime = "$yrs years ago";
+            }
+        }
+
+        return $agoTime;
+    }
+
 }

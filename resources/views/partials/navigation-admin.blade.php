@@ -196,8 +196,8 @@
             aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Info Pages</h6>
-                <a class="collapse-item {{ Request::is('tr/admin/page/create') ? 'active' : ''}}"
-                    href="{{route('page.create')}}">Add New Page</a>
+                {{-- <a class="collapse-item {{ Request::is('tr/admin/page/create') ? 'active' : ''}}"
+                    href="{{route('page.create')}}">Add New Page</a> --}}
                 <a class="collapse-item {{ Request::is('tr/admin/page') ? 'active' : ''}} {{ Request::is('tr/admin/page/*/edit') ? 'active' : ''}}"
                     href="{{ route('page.index') }}">All Pages</a>
             </div>
@@ -279,6 +279,20 @@
                     href="{{ route('testimonial.index') }}">All Testimonials</a>
             </div>
         </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{( \Request::route()->getName() == 'tr.dashboard.post_views') ? 'active' : ''}}"
+            href="{{ route('tr.dashboard.post_views') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Post Views</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{( \Request::route()->getName() == 'tr.comments.index') ? 'active' : ''}}"
+            href="{{ route('tr.comments.index') }}">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Post Comments</span>
+        </a>
     </li>
 
 

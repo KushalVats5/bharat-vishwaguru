@@ -1,0 +1,44 @@
+footer {
+    display: flex;
+    padding: 20px 30px 20px 90px;
+    background-color: #000;
+    color: #fff;
+    justify-content: space-between;
+    p {
+        color: #AFAFAF;
+        font-size: 13px;
+        line-height: 16px;
+        a {
+            text-decoration: none;
+        }
+    }
+    ul {
+        display: flex;
+        li {
+            margin-left: 20px;
+            a {
+                color: #AFAFAF;
+                font-size: 13px;
+                line-height: 16px;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.light-theme {
+    footer {
+        background-color: #A6A6A6;
+        color: #000;
+        p {
+            color: #000;
+        }
+        ul {
+            li {
+                a {
+                    color: #000;
+                }
+            }
+        }
+    }
+}

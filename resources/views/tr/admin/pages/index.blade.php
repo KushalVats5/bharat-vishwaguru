@@ -9,7 +9,7 @@
                 <div class="card-body">
                     <div class="">
                         <h3>Page Details</h3>
-                        <a href="{{route('page.create')}}" class="btn btn-success btn-sm">Add New page</a>
+                        {{-- <a href="{{route('page.create')}}" class="btn btn-success btn-sm">Add New page</a> --}}
                     </div>
 
                     @if (session('success'))
@@ -45,19 +45,19 @@
                                     <td>{{ $row->id }}</td>
                                     <td>
                                         @if ($row->page_image)
-                                    @php
-                                    $image = json_decode($row->page_image);
-                                    //dd($image);
-                                    @endphp
-                                    <a href="#" class="avatar border-gray">
-                                        <img src="{{ $image->thumbnails }}" alt="blog thumb" width="150px" height="150px">
-                                    </a>
+                                        @php
+                                        $image = json_decode($row->page_image);
+                                        //dd($image);
+                                        @endphp
+                                        <a href="javascript;" target="_blank" class="avatar border-gray">
+                                            <img src="{{ $image->thumbnail }}" alt="blog thumb" width="150px" height="150px">
+                                        </a>
 
-                                    @else
-                                    <a href="#" class="avatar border-gray">
-                                        <img src="{{ asset('korde/images/blog/blog-thumbnail-1.jpg') }}" alt="blog thumb" width="150px" height="150px">
-                                    </a>
-                                    @endif
+                                        @else
+                                        <a href="javascript;" target="_blank" class="avatar border-gray">
+                                            <img src="{{ asset('korde/images/blog/blog-thumbnail-1.jpg') }}" alt="blog thumb" width="150px" height="150px">
+                                        </a>
+                                        @endif
                                     <td>{{ $row->title }}</td>
                                     <td>{{ $row->short_description }}</td>
                                     <td>
@@ -65,13 +65,13 @@
                                             <a href="{{route('page.edit',$row->id)}}"
                                                 class="btn btn-primary btn-sm" title="Edit"><i class="far fa-edit"></i></a>
                                             &nbsp;
-                                            <form id="delete_form{{$row->id}}" method="POST"
+                                            {{-- <form id="delete_form{{$row->id}}" method="POST"
                                                 action="{{ route('page.destroy',$row->id) }}"
                                                 onclick="return confirm('Are you sure?')">
                                                 @csrf
                                                 <input name="_method" type="hidden" value="DELETE">
                                                 <button class="btn btn-danger btn-sm" type="submit"><i class="far fa-trash-alt"></i></button>
-                                            </form>
+                                            </form> --}}
                                         </div>
                                     </td>
                                 </tr>
