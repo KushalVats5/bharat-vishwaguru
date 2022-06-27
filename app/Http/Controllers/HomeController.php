@@ -163,13 +163,12 @@ class HomeController extends Controller
     {
         if (!Auth::check()) {
             return redirect()->back()->with('success', 'Please login');
+        } else {
             $UserSaveItems = UserSaveItems::where('user_id', Auth::user()->id)->get()->pluck('item_ids');
             $ids = explode(',', $UserSaveItems[0]);
             $saveArticles = Article::with('author')->whereIn('id', $ids)
                 // ->latest()->take(12)
                 ->get();
-        } else {
-            $saveArticles = [];
         }
         return view('dynamic.save-article', ['saveArticles' => $saveArticles,]);
     }
