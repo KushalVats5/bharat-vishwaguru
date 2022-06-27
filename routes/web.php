@@ -90,7 +90,7 @@ Route::post('/ajax.remove.items', [
     'uses' => 'HomeController@ajaxRemoveItems',
 ]);
 Route::post('/change-theme', function(){
-    \Cache::put("theme", request()->theme);
+    \Cache::put(\Request::ip()."_theme", request()->theme);
 })->name('theme-change');
 
 // Like Or Dislike

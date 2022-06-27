@@ -20,7 +20,7 @@
     <title>Bharat Vishwaguru</title>
 </head>
 
-<body class="{{ \Cache::get('theme') }}">
+<body class="{{ \Cache::get(\Request::ip().'_theme') }}">
 
     <!-- Main wrapper -->
 
