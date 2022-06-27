@@ -118,7 +118,7 @@ class HomeController extends Controller
     public function dynamicArticle($slug = null)
     {
         $article = Article::where(['slug' => $slug])->with('author', 'comments', 'commentsCounts', 'view_count')->first();
-        $postsViews = PostView::where(['user_id' => \Auth::user()->id, 'ip' => \Request::ip()])->first();
+        $postsViews = PostView::where(['ip' => \Request::ip()])->first();
         if (!$postsViews) {
             $postsViews = new PostView;
         }
@@ -126,7 +126,7 @@ class HomeController extends Controller
         $postsViews->titleslug = $article->slug;
         $postsViews->url = \Request::url();
         $postsViews->session_id = \Request::getSession()->getId();
-        $postsViews->user_id = \Auth::user()->id;
+        $postsViews->user_id = (\Auth::user()->id) ?? null;
         $postsViews->ip = \Request::ip();
         $postsViews->agent = \Request::header('User-Agent');
         $postsViews->save();
@@ -140,7 +140,7 @@ class HomeController extends Controller
     public function dynamicArticleVideo($slug = null)
     {
         $article = Article::where(['slug' => $slug])->with('author', 'comments', 'commentsCounts', 'view_count')->first();
-        $postsViews = PostView::where(['user_id' => \Auth::user()->id, 'ip' => \Request::ip()])->first();
+        $postsViews = PostView::where(['ip' => \Request::ip()])->first();
         if (!$postsViews) {
             $postsViews = new PostView;
         }
@@ -148,7 +148,7 @@ class HomeController extends Controller
         $postsViews->titleslug = $article->slug;
         $postsViews->url = \Request::url();
         $postsViews->session_id = \Request::getSession()->getId();
-        $postsViews->user_id = \Auth::user()->id;
+        $postsViews->user_id = (\Auth::user()->id) ?? null;
         $postsViews->ip = \Request::ip();
         $postsViews->agent = \Request::header('User-Agent');
         $postsViews->save();
